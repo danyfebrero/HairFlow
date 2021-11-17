@@ -15,6 +15,7 @@ namespace HairFlow.Entities
         [StringLength(200, MinimumLength = 2)]
         public string Title { get; set; }
         [Required]
+        [Display(Name = "Thumbnail Image Path")]
         public string TThumbnailImagePath { get; set; }
         [ForeignKey("MediaTypeId")]
         public virtual ICollection<CategoryItem> CategoryItems { get; set; }

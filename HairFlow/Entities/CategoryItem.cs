@@ -17,10 +17,13 @@ namespace HairFlow.Entities
         public string Title { get; set; }
         public string Description { get; set; }
         public int CategoryId { get; set; }
+        [Required(ErrorMessage ="Please select a valid media type from the '{0}' dropdown list")]
+        [Display(Name ="Media Type")]
         public int MadiaTypeId { get; set; }
         [NotMapped]
         public virtual ICollection<SelectListItem> MediaTypes { get; set; }
         [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}")]
+        [Display(Name = "Release Date")]
         public DateTime DateTimeItemReleased 
         {
             get 
