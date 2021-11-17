@@ -8,10 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using HairFlow.Data;
 using HairFlow.Entities;
 using HairFlow.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HairFlow.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryItemController : Controller
     {
         private readonly ApplicationDbContext _context;

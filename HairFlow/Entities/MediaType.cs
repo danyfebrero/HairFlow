@@ -1,4 +1,6 @@
 ﻿using HairFlow.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace HairFlow.Entities
 {
+
     public class MediaType :IPrimaryProperties
     {
         public int Id { get; set; }

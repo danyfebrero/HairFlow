@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace HairFlow.Entities
 {
+
     public class CategoryItem
     {
         private DateTime _releaseDate = DateTime.MinValue;

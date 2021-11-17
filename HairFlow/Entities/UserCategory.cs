@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace HairFlow.Entities
 {
+
     public class UserCategory
     {
         public int Id { get; set; }
