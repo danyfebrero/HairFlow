@@ -4,6 +4,11 @@ This project was built as Code Louisville C# 2 final project. As such, this proj
 
 * Help Hairstylist to keep formulas and diagrams of they work
 
+## Instructions
+
+* Administrator user: admin@hairflow.com 
+* Administrator password: admin
+
 ### Code Louisville Feature Matrix
 
 - [ ] Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program
