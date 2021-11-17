@@ -18,5 +18,5 @@ This project was built as Code Louisville C# 2 final project. As such, this proj
 - [ ] Create 3 or more unit tests for your application
 - [x] Build a conversion tool that converts user input to another type and displays it (ex: converts cups to grams)
 - [x] Calculate and display data based on an external factor (ex: get the current date, and display how many days remaining until some event)
-- [] Analyze text and display information about it (ex: how many words in a paragraph)
+- [ ] Analyze text and display information about it (ex: how many words in a paragraph)
 - [ ] Visualize data in a graph, chart, or other visual representation of data
