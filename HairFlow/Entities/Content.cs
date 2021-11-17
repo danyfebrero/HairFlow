@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace HairFlow.Entities
 {
-    public class CategoryItem
+    public class Content
     {
         public int Id { get; set; }
         [Required]
         [StringLength(200, MinimumLength = 2)]
         public string Title { get; set; }
-        public string Description { get; set; }
+        public string HTMLContent { get; set; }
+        public string VideoLink { get; set; }
+        public CategoryItem CategoryItem { get; set; }
+        [NotMapped]
+        public int CatItemId { get; set; }
+        [NotMapped]
         public int CategoryId { get; set; }
-        public int MadiaTypeId { get; set; }
-        [NotMapped]
-        public virtual ICollection<SelectListItem> MediaTypes { get; set; }
-        public DateTime DateTimeItemReleased { get; set; }
-        [NotMapped]
-        public int ContentId { get; set; }
+
     }
 }

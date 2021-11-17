@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HairFlow.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,19 +8,15 @@ using System.Threading.Tasks;
 
 namespace HairFlow.Entities
 {
-    public class Category
+    public class MediaType :IPrimaryProperties
     {
-        public int Id {get; set ;}
-
+        public int Id { get; set; }
         [Required]
-        [StringLength(200,MinimumLength = 2)]
+        [StringLength(200, MinimumLength = 2)]
         public string Title { get; set; }
-        public string Description { get; set; }
         [Required]
-        public string ThumbnailImagePath { get; set; }
-        [ForeignKey("CategoryId")]
+        public string TThumbnailImagePath { get; set; }
+        [ForeignKey("MediaTypeId")]
         public virtual ICollection<CategoryItem> CategoryItems { get; set; }
-        [ForeignKey("CategoryId")]
-        public virtual ICollection<UserCategory> UserCategory { get; set; }
     }
 }
