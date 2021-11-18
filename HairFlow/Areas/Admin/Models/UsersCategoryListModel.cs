@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace HairFlow.Areas.Admin.Models
 {
-    public class UserCategoryListModel
+    public class UsersCategoryListModel
     {
         public int CategoryId { get; set; }
         public ICollection<UserModel> Users { get; set; }
