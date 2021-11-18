@@ -1,10 +1,46 @@
 ﻿$(function ()
 {
- 
+    $("#UserRegistrationModal input[name = 'AcceptUserAgreement']").click(onAcceptUserAgreementClick);
+
+    $("#UserRegistrationModal button[name = 'register']").prop("disabled", true);
+
+    function onAcceptUserAgreementClick() {
+        if ($(this).is(":checked") {
+            $("#UserRegistrationModal button[name = 'register']").prop("disabled", false);
+        }
+        else {
+            $("#UserRegistrationModal button[name = 'register']").prop("disabled", true);
+        }
+    }
+    $("#UserRegistrationModal input[name = 'Email']").blur(function () {
+
+        var email = $("#UserRegistrationModal input[name = 'Email']").val();
+        var url = "UserAuth/UserNameExist?userName=" + email;
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                if (data == true) {
+                    PresentClosableBootstrapAlert("#alert_placeholder_register", "warning", "Invalid Email", "This email address has already been registered");
+                }
+                else {
+                    CloseAlert("#alert_placeholder_register");
+                }
+
+            },
+            error: function (xhr, ajaxOption, thrownError) {
+
+                PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
+                console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
+            }
+
+        });
+    }); 
+
     var registerUserButton = $("#UserRegistrationModal button[name = 'register']").click(onUserRegisterClick);
 
     function onUserRegisterClick() {
-        var url = "/UserAuth/RegisterUser";
+        var url = "/UserAuth/RegisterUser1";
 
         var antiForgeryToken = $("#UserRegistrationModal input[name='__RequestVerificationToken']").val();
         var email = $("#UserRegistrationModal input[name='Email']").val();
@@ -58,7 +94,7 @@
 
             },
             error: function (xhr, ajaxOptions, thrownError) {
-     
+                PresentClosableBootstrapAlert("#alert_placeholder_register", "danger", "Error!", errorText);
                 console.error(thrownError + '\r\n' + xhr.statusText + '\r\n' + xhr.responseText);
             }
 
