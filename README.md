@@ -2,7 +2,7 @@
 
 This project was built as Code Louisville C# 2 final project. As such, this project has been built out to provide the following functionality:
 
-* Help Hairstylist to keep formulas and diagrams of they work
+* Help Hairstylist to sell online courses
 
 ## Instructions
 
