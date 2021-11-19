@@ -17,12 +17,12 @@ namespace HairFlow.Areas.Admin.Controllers
     {
         
         private readonly ApplicationDbContext _context;
-        
+        private readonly IDataFunctions _dataFunctions;
 
-        public UsersToCategoryController(ApplicationDbContext context)
+        public UsersToCategoryController(ApplicationDbContext context, IDataFunctions dataFunctions)
         {
             _context = context;
-            
+            _dataFunctions = dataFunctions;
         }
 
         [HttpGet]
@@ -59,27 +59,7 @@ namespace HairFlow.Areas.Admin.Controllers
              
             var usersSelectedForCategoryToDelete = await GetUsersForCategoryToDelete(usersCategoryListModel.CategoryId);
 
-            using (var dbContextTransaction = await _context.Database.BeginTransactionAsync())
-            {
-                 try
-                 {
-                    _context.RemoveRange(usersSelectedForCategoryToDelete);
-                    await _context.SaveChangesAsync();
-
-                    if (usersSelectedForCategoryToAdd != null)
-                    {
-                        _context.AddRange(usersSelectedForCategoryToAdd);
-                        await _context.SaveChangesAsync();
-                    }
-                    await dbContextTransaction.CommitAsync();
-                 }
-                 catch (Exception)
-                 {
-                    await dbContextTransaction.DisposeAsync();
-                 }
-            }
-
-    
+            await _dataFunctions.UpdateUserCategoryEntityAsync(usersSelectedForCategoryToDelete, usersSelectedForCategoryToAdd);
 
             usersCategoryListModel.Users = await GetAllUsers();
 

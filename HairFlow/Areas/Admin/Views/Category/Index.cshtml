@@ -37,10 +37,10 @@
                 @Html.DisplayFor(modelItem => item.ThumbnailImagePath)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |  
-                <a asp-controller="CategoryItem" asp-action="Index" asp-route-categoryId="@item.Id">Update Items</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Edit</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Details</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">Delete</a>  
+                <a asp-controller="CategoryItem" asp-action="Index" asp-route-categoryId="@item.Id" class="btn btn-outline-secondary btn-sm">Update Items</a>
             </td>
         </tr>
 }
