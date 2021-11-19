@@ -49,9 +49,6 @@ namespace HairFlow.Models
         public bool AcceptUserAgreement { get; set; }
         public string RegistrationInValid { get; set; }
         public int CategoryId { get; set; }
-
-
-
         
     }
 }

@@ -38,4 +38,5 @@ namespace HairFlow.Data
         public DbSet<MediaType> MediaType { get; set; }
         public DbSet<UserCategory>  UserCategory { get; set; }
     }
+    
 }

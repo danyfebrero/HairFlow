@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using HairFlow.Entities;
 
 namespace HairFlow.Controllers
 {
@@ -18,13 +19,14 @@ namespace HairFlow.Controllers
         private readonly ApplicationDbContext _context;
 
         public UserAuthController(ApplicationDbContext context,
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+                                  UserManager<ApplicationUser> userManager,
+                                  SignInManager<ApplicationUser> signInManager)
         {
-            _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
         }
+
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -35,9 +37,9 @@ namespace HairFlow.Controllers
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(loginModel.Email,
-                                                                      loginModel.Password,
-                                                                      loginModel.RememberMe,
-                                                                      lockoutOnFailure:false);
+                                                                     loginModel.Password,
+                                                                     loginModel.RememberMe,
+                                                                     lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     loginModel.LoginInValid = "";
@@ -46,8 +48,10 @@ namespace HairFlow.Controllers
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt");
                 }
+
             }
-            return PartialView("_UserLoginPartial",loginModel);
+            return PartialView("_UserLoginPartial", loginModel);
+
         }
 
         [AllowAnonymous]
@@ -65,6 +69,7 @@ namespace HairFlow.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+
         }
 
         [AllowAnonymous]
@@ -97,6 +102,12 @@ namespace HairFlow.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
+                    if (registrationModel.CategoryId != 0)
+                    {
+                        await AddCategoryToUser(user.Id, registrationModel.CategoryId);
+
+                    }
+
                     return PartialView("_UserRegistrationPartial", registrationModel);
                 }
 
@@ -104,24 +115,34 @@ namespace HairFlow.Controllers
 
             }
             return PartialView("_UserRegistrationPartial", registrationModel);
+
         }
 
         [AllowAnonymous]
-        public async Task<bool> UserNameExist(string userName)
+        public async Task<bool> UserNameExists(string userName)
         {
             bool userNameExists = await _context.Users.AnyAsync(u => u.UserName.ToUpper() == userName.ToUpper());
+
             if (userNameExists)
                 return true;
 
             return false;
+
         }
 
         private void AddErrorsToModelState(IdentityResult result)
         {
             foreach (var error in result.Errors)
-            {
                 ModelState.AddModelError(string.Empty, error.Description);
-            }
+        }
+
+        private async Task AddCategoryToUser(string userId, int categoryId)
+        {
+            UserCategory userCategory = new UserCategory();
+            userCategory.CategoryId = categoryId;
+            userCategory.UserId = userId;
+            _context.UserCategory.Add(userCategory);
+            await _context.SaveChangesAsync();
         }
     }
 }
