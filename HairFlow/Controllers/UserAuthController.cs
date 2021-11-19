@@ -36,7 +36,7 @@ namespace HairFlow.Controllers
             {
                 var result = await _signInManager.PasswordSignInAsync(loginModel.Email,
                                                                       loginModel.Password,
-                                                                      loginModel.RemeberMe,
+                                                                      loginModel.RememberMe,
                                                                       lockoutOnFailure:false);
                 if (result.Succeeded)
                 {
